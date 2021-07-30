@@ -1,0 +1,25 @@
+#define PIR 2
+
+//declare input variable 0
+int inp = 0;
+//set LEDstate to false
+volatile bool stateOfLed = false;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(LED_BUILTIN, OUTPUT);      
+  pinMode(PIR, inp);
+
+  attachInterrupt(digitalPinToInterrupt(PIR), change, CHANGE);
+}
+
+void loop() {
+    
+}
+
+void change()
+{
+  stateOfLed = !stateOfLed;
+  digitalWrite(LED_BUILTIN, stateOfLed);
+  Serial.println("Interrupt");
+}
